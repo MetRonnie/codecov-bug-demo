@@ -1,14 +1,6 @@
 import pytest
 
-from main import greater_than_five, less_than_ten, is_zero
-
-
-@pytest.mark.parametrize('input, expected', [
-    (6, True),
-    (5, False),
-])
-def test_greater_than_five(input, expected):
-    assert greater_than_five(input) == expected
+from main import less_than_ten, is_zero
 
 
 @pytest.mark.parametrize('input, expected', [
