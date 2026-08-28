@@ -1,3 +1,7 @@
+def is_even(x):
+    """Return whether x is even."""
+    return x % 2 == 0
+
 def greater_than_five(x):
     if x > 5:
         return True
