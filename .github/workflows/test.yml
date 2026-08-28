@@ -3,7 +3,7 @@ name: Test
 on:
   pull_request:
   push:
-  workflow_dispatch:
+    branches: [master]
 
 env:
   FORCE_COLOR: 2
@@ -25,14 +25,9 @@ jobs:
         run: pip install pytest pytest-cov
 
       - name: Run tests
-        run: pytest --cov
-
-      - name: Coverage report
-        run: |
-          coverage xml
-          coverage report
+        run: pytest --cov --cov-branch --cov-report=xml
 
       - name: Codecov upload
         uses: codecov/codecov-action@v7
         with:
-          name: ${{ github.workflow }}
+          token: ${{ secrets.CODECOV_TOKEN }}
