@@ -1,0 +1,38 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch:
+
+env:
+  FORCE_COLOR: 2
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v7
+
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.x'
+
+      - name: Install
+        run: pip install pytest pytest-cov
+
+      - name: Run tests
+        run: pytest --cov
+
+      - name: Coverage report
+        run: |
+          coverage xml
+          coverage report
+
+      - name: Codecov upload
+        uses: codecov/codecov-action@v7
+        with:
+          name: ${{ github.workflow }}
