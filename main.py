@@ -19,3 +19,7 @@ def less_than_ten(x):
         return True
     else:
         return False
+
+
+def is_zero(x):
+    return x == 0
